@@ -10,7 +10,7 @@ function $writeCode(content, fn) {
             clearInterval(timeId)
             fn.call()
         }           
-    }, 20)
+    }, 40)
 
 
 }
@@ -25,7 +25,7 @@ function $writeMakedown(content, fn) {
             clearInterval(timeId)
             fn()
         }           
-    }, 20)  
+    }, 40)  
 }
 
 function markdownToHtml(content1, content2) {
@@ -39,7 +39,7 @@ function markdownToHtml(content1, content2) {
             html_content = markdown.toHTML(content1)
             $('.markdownPage').html(html_content) 
         }           
-    }, 20)  
+    }, 40)  
 }
 
 var content = ` 
@@ -67,7 +67,7 @@ html {
 }
 
 /* 代码加个高亮吧 */
-.token.comment {color:  #333;}
+.token.comment {color: rgb(16, 40, 132);}
 .token.selector {color: #690;}
 .token.punctuation {color: #999;}
 .token.property {color: #905;}
