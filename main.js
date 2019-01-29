@@ -58,7 +58,7 @@ html {
     margin: 0.5rem;
     padding: 1rem;
     border:1px solid white;
-    overflow: scroll;
+    overflow: auto;
 }
 
 /* 代码加个高亮吧 */
