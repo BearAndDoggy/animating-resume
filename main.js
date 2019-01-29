@@ -1,18 +1,22 @@
-function $writeCode(content, fn) {
-    let n = 0
-    $('body').append('<div class="rightPage"><div class="markdownPage"></div></div>')
+function $writeCode(pre, content, fn) {
+    let n = 0  
     let timeId = setInterval(() => {
         n += 1
         $('style').append(content[n])
         var html = Prism.highlight(content.substring(0, n), Prism.languages.css, 'css')
-        $('#domPage').html(html).scrollTop($('#domPage').height())       
+        document.querySelector('#domPage').innerHTML = pre + html
+        $('#domPage').scrollTop($('#domPage').height())       
         if (n === content.length) {
             clearInterval(timeId)
             fn.call()
         }           
-    }, 40)
+    }, 0)
 
 
+}
+
+function createPage() {
+    $('body').append('<div class="rightPage"><pre class="markdownPage"></pre></div>')
 }
 
 function $writeMakedown(content, fn) {
@@ -25,21 +29,13 @@ function $writeMakedown(content, fn) {
             clearInterval(timeId)
             fn()
         }           
-    }, 40)  
+    }, 0)  
 }
 
-function markdownToHtml(content1, content2) {
-    let n = 0
-    let timeId = setInterval(() => {
-        n += 1
-        $('#domPage').append(content2[n])
-        $('#domPage').scrollTop($('#domPage').height())   
-        if (n === content2.length) {
-            clearInterval(timeId)
-            html_content = markdown.toHTML(content1)
-            $('.markdownPage').html(html_content) 
-        }           
-    }, 40)  
+function markdownToHtml(md) {
+    html_content = marked(md)
+    $('.markdownPage').replaceWith('<div class="markdown-body markdownPage"></div>');
+    $('.markdownPage').html(html_content) 
 }
 
 var content = ` 
@@ -50,7 +46,7 @@ var content = `
 
 /* 首先给所有动画加一个动态效果时间 */
 * {
-    transition: all 0.3s;
+    transition: all 1s;
 }
 
 /* 背景太单调了，加一个背景 */
@@ -59,11 +55,10 @@ html {
 }
 /* 文字离边框太近了 */
 #domPage {
-    padding: 0.75rem;
-    margin: 1rem;
-    border: 0.1rem solid white;
-    width:45vw;height:90vh;
-    overflow: auto;
+    margin: 0.5rem;
+    padding: 1rem;
+    border:1px solid white;
+    overflow: scroll;
 }
 
 /* 代码加个高亮吧 */
@@ -73,41 +68,49 @@ html {
 .token.property {color: #905;}
 .token.function {color: #DD4A68;}
 
-/* 加点3D效果吧 */
+/* 加点3D动画效果吧 */
 html {
     perspective: 1000px;
 }
+#domPage {
+    position: fixed;left:0;top:0;
+    width: 48vw; height: 96vh;
+}
 
 #domPage {
-position: fixed; left: 0; top: 0;
--webkit-transition: none;
-transition: none;
--webkit-transform: rotateY(5deg) translateZ(-60px) ;
-        transform: rotateY(5deg) translateZ(-60px) ;
+    transition: none;
+    transform: rotateY(10deg) translateZ(-100px) ;
+               
 }
 
 /* 接下来准备一个编辑器 */
 .markdownPage {
-    position: fixed; right: 0; top: 0;
+    position: fixed;
+    right: 0;
+    top:0;
     padding: 1rem;
-    margin: 1rem;
-    margin-right: 3rem;
-    width:45vw;height:90vh;
-    border: 1px solid;
-    background: white; color: #222;
-    overflow: auto;
+    margin: 0.5rem;
+    width:48vw;
+    height:96vh;
+    border: 1px solid white;
+    background: white; 
+    color: #222;
+    overflow: hidden;
+    transform: rotateY(-10deg) translateZ(-100px) ;
 }
 
 `
 var content2 = `
-### 孙炎
+## 孙炎
 前端工程师 应届毕业生 
-### 技能
+
+## 技能
 - 前端开发
 - Rails 开发
 - Node.js 开发
 - 前端授课
-### 工作经历
+
+## 工作经历
 1. 饥人谷
 2. 腾讯即时通讯平台部
 3. 阿里巴巴B2B部门
@@ -120,9 +123,12 @@ var content3 = `
  * 简单，用开源工具翻译成 HTML 就行了
 */
 `
-$writeCode(content, () => {
+createPage()
+$writeCode('', content, () => {
     $writeMakedown(content2, () => {
-        markdownToHtml(content2, content3)
+        $writeCode(content, content3, () => {
+            markdownToHtml(content2)
+        })
     })
 })
 
