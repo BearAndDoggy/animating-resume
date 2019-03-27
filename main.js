@@ -10,7 +10,7 @@ function $writeCode(pre, content, fn) {
             clearInterval(timeId)
             fn.call()
         }           
-    }, 55)
+    }, 20)
 
 
 }
@@ -29,7 +29,7 @@ function $writeMakedown(content, fn) {
             clearInterval(timeId)
             fn()
         }           
-    }, 55)  
+    }, 20)  
 }
 
 function markdownToHtml(md) {
