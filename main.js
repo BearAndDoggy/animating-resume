@@ -105,16 +105,20 @@ var content2 = `
 前端工程师 应届毕业生 
 
 ## 技能
-- 前端开发
-- Rails 开发
-- Node.js 开发
-- 前端授课
+- 熟练掌握HTML5 & CSS3 能够制作精美网页，掌握CSS3动画，过渡效果，Flex布局，掌握响应式开发等常用技术
+- 会使用REM、vw/vh、媒体查询等技术制作适配移动端的页面
+- 熟练掌握JavaScript的知识，能够使用基于ES5/ES6的原生JavaScript操作DOM结构实现页面的交互响应
+- 熟练掌握jQuery知识，能使用jQuery制作网站、轮播、Tab等
+- 理解MVC、MVVM等思想，熟悉Vue常用的功能及命令，如组件通信、Vue-Router、Vuex、Vue-CLI、生命周期、Axios等
+- 掌握HTTP基础、熟练利用Ajax与后端进行交互，了解跨域的常用解决方案JSONP、CORS等
+- 熟练使用 VsCode、WebStorm、Git 等开发工具
 
-## 工作经历
-1. 饥人谷
-2. 腾讯即时通讯平台部
-3. 阿里巴巴B2B部门
-4. 彩程知人项目组
+## 项目经验
+1. 仿网易云音乐移动端-jQuery
+2. 多人博客-Vue
+3. 仿CNode社区-Vue
+4. 在线简易画板-Canvas
+5. 会动的简历-JavaScript
 `
 
 var content3 = `
